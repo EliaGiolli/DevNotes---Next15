@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevNotes 📝
 
-## Getting Started
+> Your modern notes app for developers – simple, responsive, and accessible!  
+> ⚠️ **Work in progress**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+DevNotes is a progressive web application built with **Next.js 16+**, **React 19**, **TypeScript**, and **Tailwind CSS**.  
+The app is designed to help developers and tech enthusiasts keep their notes organized in a clean, modern interface.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Key goals of this project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Server & Client Components architecture ✅
+- Fully typed with TypeScript ✅
+- Responsive layout with Tailwind CSS ✅
+- Accessible components (`aria-*`, focus states, keyboard navigation) ✅
+- Progressive enhancement: toggle content, reusable UI components  
+- Easy future integration with **ShadCN UI**, **CVA**, and state management libraries
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Features (Planned / In Progress)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Create, read, and manage notes  
+- Toggle visibility of note content with accessible buttons  
+- Responsive grid layout with equal-height cards  
+- Dark mode support  
+- Reusable components: Button, Card, NoteItem  
+- Future enhancements:
+  - Form Actions for creating notes
+  - Favorite / pin notes
+  - Advanced state management (useReducer → context → Zustand/Redux Toolkit)
+  - Unit & E2E testing integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎨 UI & Accessibility
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clean and minimal design for readability  
+- Tailwind CSS with custom palette:
+  - Light background: `bg-zinc-50`
+  - Dark background: `bg-black`
+  - Accent: `text-violet-600` / `hover:text-violet-500`
+- Cards with consistent heights and shadows  
+- Accessible buttons (`aria-expanded`, `aria-controls`)  
+- Keyboard navigable, focusable interactive elements  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 16+** (App Router)  
+- **React 19** (Server & Client Components)  
+- **TypeScript**  
+- **Tailwind CSS + clsx + tailwind-merge + CVA**  
+- **ShadCN UI** (future components)  
+- **Vitest + Testing Library** (unit tests, planned)  
+- **Playwright** (E2E, planned)  
+
+---
+
+## 📂 Project Structure (Work in Progress)
