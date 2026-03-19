@@ -6,4 +6,6 @@ export interface Note {
 
 export interface NoteItemProps {
     note: Note,
+    favorites: number[],
+    addToFavorites: (id:number) => void;
 }
