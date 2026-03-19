@@ -8,10 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "lucide-react": "^0.577.0",
     "next": "16.1.7",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "vitest": "^4.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

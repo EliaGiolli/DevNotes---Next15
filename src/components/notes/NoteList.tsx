@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { notes } from "@/data/notes";
-import NoteItem from "./NoteItem";
+import NoteItem from "./notes/NoteItem";
 
 function NoteList() {
   const [favourites, setFavourites] = useState<number[]>(() => {
