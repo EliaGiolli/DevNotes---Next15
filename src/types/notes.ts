@@ -1,3 +1,5 @@
+import { type FavouriteAction } from "@/reducers/favouritesReducer";
+
 export interface Note {
     id: number,
     title: string,
@@ -7,5 +9,5 @@ export interface Note {
 export interface NoteItemProps {
     note: Note,
     favorites: number[],
-    addToFavorites: (id:number) => void;
+    dispatch: React.Dispatch<FavouriteAction>;
 }

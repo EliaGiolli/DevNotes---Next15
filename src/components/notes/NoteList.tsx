@@ -1,34 +1,27 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { notes } from "@/data/notes";
 import NoteItem from "./NoteItem";
+import { favouritesReducer, FavouritesActionKind } from "@/reducers/favouritesReducer";
 
 function NoteList() {
-  const [favourites, setFavourites] = useState<number[]>(() => {
+  const [favourites, dispatch] = useReducer(
+    favouritesReducer,
+    [], 
+    () => {
     // it avoid SSR errors in NextJS
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('favourites');
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
+      if (typeof window !== 'undefined') {
+        const saved = localStorage.getItem('favourites');
+        return saved ? JSON.parse(saved) : [];
+      }
+      return [];
   });
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(favourites));
   }, [favourites]);
   
-  const addToFavourites = (id:number) => {
-    
-    if(favourites.includes(id)){
-      const idToBeRemoved = favourites.filter((removedId) => removedId !== id);
-      setFavourites(idToBeRemoved);
-      
-    } else{
-      const newFavouriteId = [...favourites, id]
-      setFavourites(newFavouriteId);
-    }
-  }
 
   return (
     <>
@@ -37,8 +30,10 @@ function NoteList() {
                 <NoteItem 
                   key={note.id} 
                   note={note}
-                  addToFavorites={addToFavourites}
-                  favorites={favourites}
+                  dispatch={dispatch}
+                  favorites={favourites.favorites}
+                  filter={favourites.filterTag}
+                  search={favourites.search}
                   />
             )}
         </ul>
