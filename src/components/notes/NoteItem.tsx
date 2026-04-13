@@ -37,7 +37,7 @@ function NoteItem({note, favorites,search, filter, dispatch}:NoteItemProps) {
                 <Button 
                     onClick={() => 
                         dispatch({
-                            type: FavouritesActionKind.ADD, 
+                            type: FavouritesActionKind.TOGGLE, 
                             payload: note.id
                         })}
                     aria-pressed={favorites.includes(note.id)}

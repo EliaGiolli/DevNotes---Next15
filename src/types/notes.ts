@@ -9,5 +9,7 @@ export interface Note {
 export interface NoteItemProps {
     note: Note,
     favorites: number[],
+    search: string,
+    filter: 'all' | 'favourites',
     dispatch: React.Dispatch<FavouriteAction>;
 }
