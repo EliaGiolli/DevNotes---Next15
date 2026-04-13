@@ -67,6 +67,7 @@ function NoteList() {
         />
         <div className="flex gap-2">
           <Button 
+            variant={favourites.filterTag === 'all' ? 'active' : 'outline'}
             onClick={() =>
             dispatch({ type: FavouritesActionKind.FILTER, payload: 'all' })
           }>
@@ -74,6 +75,7 @@ function NoteList() {
           </Button>
 
           <Button 
+            variant={favourites.filterTag === 'all' ? 'active' : 'outline'}
             onClick={() =>
             dispatch({ type: FavouritesActionKind.FILTER, payload: 'favourites' })
           }>

@@ -35,6 +35,7 @@ function NoteItem({note, favorites,search, filter, dispatch}:NoteItemProps) {
             </p>
             <div className="flex gap-x-3">
                 <Button 
+                    variant="outline"
                     onClick={() => 
                         dispatch({
                             type: FavouritesActionKind.TOGGLE, 
