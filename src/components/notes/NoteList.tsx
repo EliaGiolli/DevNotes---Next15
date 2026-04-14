@@ -2,10 +2,11 @@
 
 import { useState,useMemo, useEffect } from "react";
 import NoteItem from "./NoteItem";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 import { Note } from "@/types/notes";
 import { notes } from "@/data/notes";
 import { toggleFavorite } from "@/helpers/togglerHelperFunctions";
+import Link from "next/link";
 
 function NoteList() {
     
@@ -33,6 +34,12 @@ function NoteList() {
   return (
     <>
       <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+        
+        <Link href="/create">
+          <Button variant="default">
+            + New Note
+          </Button>
+        </Link>
         <input
           type="text"
           placeholder="Search notes..."

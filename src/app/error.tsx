@@ -1,7 +1,7 @@
 // app/error.tsx
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@/components/Buttons/Button";
 
 export default function ErrorPage({ error, reset }: { error: Error, reset: () => void }) {
   return (

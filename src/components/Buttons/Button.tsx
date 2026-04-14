@@ -24,15 +24,27 @@ const buttonVariants = cva(
 );
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>;
+  VariantProps<typeof buttonVariants> & {
+    isLoading?: boolean;
+  };
 
-function Button({ className, variant, size, ...props }: ButtonProps) {
+function Button({
+  className,
+  variant,
+  size,
+  isLoading,
+  disabled,
+  children,
+  ...props
+}: ButtonProps) {
   return (
     <button
+      disabled={disabled || isLoading}
       className={twMerge(buttonVariants({ variant, size }), className)}
       {...props}
-    />
+    >
+      {isLoading ? "Loading..." : children}
+    </button>
   );
 }
-
 export default Button;
