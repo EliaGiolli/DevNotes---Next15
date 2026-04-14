@@ -1,15 +1,13 @@
-import { type FavouriteAction } from "@/reducers/favouritesReducer";
-
 export interface Note {
     id: number,
     title: string,
     content: string,
+    isFavourite: boolean
 }
 
 export interface NoteItemProps {
     note: Note,
-    favorites: number[],
     search: string,
     filter: 'all' | 'favourites',
-    dispatch: React.Dispatch<FavouriteAction>;
+    toggleFavorite: (id: number) => void;
 }

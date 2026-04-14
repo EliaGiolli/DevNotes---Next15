@@ -1,48 +1,34 @@
 'use client';
 
-import { useReducer, useEffect,useMemo } from "react";
-import { notes } from "@/data/notes";
+import { useState,useMemo, useEffect } from "react";
 import NoteItem from "./NoteItem";
 import Button from "../Button";
-import { favouritesReducer, FavouritesActionKind } from "@/reducers/favouritesReducer";
-
-const initialState = {
-  favorites: [],
-  filterTag: 'all',
-  search: ''
-};
+import { Note } from "@/types/notes";
+import { notes } from "@/data/notes";
+import { toggleFavorite } from "@/helpers/togglerHelperFunctions";
 
 function NoteList() {
-  const [favourites, dispatch] = useReducer(
-    favouritesReducer,
-    initialState, 
-    () => {
-    // it avoid SSR errors in NextJS
-      if (typeof window !== 'undefined') {
-        const saved = localStorage.getItem('favourites');
-        return saved ? { ...initialState, ...JSON.parse(saved) } : initialState;
-      }
-      return initialState;
-  });
+    
+  const [notesState,setNotesState] = useState<Note[]>([]);
+  const [search, setSearch] = useState('');
+  const [filterTag, setFilterTag] = useState<'all' | 'favourites'>('all');
 
   useEffect(() => {
-    localStorage.setItem('favourites', JSON.stringify(favourites));
-  }, [favourites]);
-  
+    setNotesState(notes);
+  }, []);
 
   const filteredNotes = useMemo(() => {
-    return notes.filter((note) => {
+    return notesState.filter((note) => {
       const matchesSearch = note.title
         .toLowerCase()
-        .includes(favourites.search.toLowerCase());
+        .includes(search.toLowerCase());
 
       const matchesFilter =
-        favourites.filterTag === 'all' ||
-        favourites.favorites.includes(note.id);
+        filterTag === 'all' || note.isFavourite
 
       return matchesSearch && matchesFilter;
     })
-  },[notes, favourites]);
+  },[notesState, search, filterTag]);
   
   return (
     <>
@@ -50,10 +36,8 @@ function NoteList() {
         <input
           type="text"
           placeholder="Search notes..."
-          value={favourites.search}
-          onChange={(e) =>
-            dispatch({ type: FavouritesActionKind.SEARCH, payload: e.target.value })
-          }
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           className="
             w-full md:w-64
             px-4 py-2
@@ -67,18 +51,16 @@ function NoteList() {
         />
         <div className="flex gap-2">
           <Button 
-            variant={favourites.filterTag === 'all' ? 'active' : 'outline'}
-            onClick={() =>
-            dispatch({ type: FavouritesActionKind.FILTER, payload: 'all' })
-          }>
+            variant={filterTag === 'all' ? 'active' : 'outline'}
+            onClick={() => setFilterTag('all')}
+          >
             All
           </Button>
 
           <Button 
-            variant={favourites.filterTag === 'all' ? 'active' : 'outline'}
-            onClick={() =>
-            dispatch({ type: FavouritesActionKind.FILTER, payload: 'favourites' })
-          }>
+            variant={filterTag === 'all' ? 'active' : 'outline'}
+            onClick={() => setFilterTag('favourites')}
+          >
             Favorites
           </Button>
         </div>
@@ -88,11 +70,10 @@ function NoteList() {
               <NoteItem 
                 key={note.id} 
                 note={note}
-                dispatch={dispatch}
-                favorites={favourites.favorites}
-                filter={favourites.filterTag}
-                search={favourites.search}
-                />
+                search={search}
+                filter={filterTag}
+                toggleFavorite={(id) => toggleFavorite(id, setNotesState)}
+              />
           )}
       </ul>
     </>

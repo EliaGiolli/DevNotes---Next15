@@ -4,9 +4,8 @@ import { NoteItemProps } from "@/types/notes";
 import Button from "../Button";
 import { NotepadText } from "lucide-react";
 import { Heart } from "lucide-react";
-import { FavouritesActionKind } from "@/reducers/favouritesReducer";
 
-function NoteItem({note, favorites,search, filter, dispatch}:NoteItemProps) {
+function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
     const [isOpen, setIsOpen] = useState(true);
 
     const toggle = () => setIsOpen(!isOpen);
@@ -25,7 +24,7 @@ function NoteItem({note, favorites,search, filter, dispatch}:NoteItemProps) {
                     >
                         {note.title}
                 </h2>
-                <Heart className={favorites.includes(note.id) ? 'text-violet-700' : 'text-slate-500'} size={30}/>
+                <Heart className={note.isFavourite ? 'text-violet-700' : 'text-slate-500'} size={30}/>
             </div>
             <p 
                 className={isOpen? 'text-md text-zinc-400' : 'hidden'}
@@ -36,14 +35,10 @@ function NoteItem({note, favorites,search, filter, dispatch}:NoteItemProps) {
             <div className="flex gap-x-3">
                 <Button 
                     variant="outline"
-                    onClick={() => 
-                        dispatch({
-                            type: FavouritesActionKind.TOGGLE, 
-                            payload: note.id
-                        })}
-                    aria-pressed={favorites.includes(note.id)}
+                    onClick={() => toggleFavorite(note.id)}
+                    aria-pressed={note.isFavourite}
                 >
-                    {favorites.includes(note.id) 
+                    {note.isFavourite 
                         ? 'remove from favorites'
                         : 'add to favorites'
                     }
