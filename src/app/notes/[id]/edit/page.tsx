@@ -1,5 +1,5 @@
-import { getNoteById } from "@/core/lib/db";
-import EditNoteForm from "@/features/notes/EditNoteForm";
+import { getNoteById } from "@/features/notes/helpers/db-helpers";
+import EditNoteForm from "@/features/notes/components/EditNoteForm";
 
 export default async function Page({
   params,

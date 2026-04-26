@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from "react-dom";
-import { createNoteAction } from "@/core/actions/note";
+import { createNoteAction } from "@/features/notes/actions/note";
 import SubmitButton from "@/shared/components/Buttons/SubmitButton";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";

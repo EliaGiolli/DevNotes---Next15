@@ -1,6 +1,6 @@
 "use server";
 
-import { getNoteById, updateNote } from "@/core/lib/db";
+import { getNoteById, updateNote } from "../helpers/db-helpers";
 
 
 export async function toggleFavoriteAction(noteId: number) {

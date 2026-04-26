@@ -1,4 +1,4 @@
-import NoteList from "@/features/notes/NoteList";
+import NoteList from "@/features/notes/components/NoteList";
 
 export default function Home() {
   return (

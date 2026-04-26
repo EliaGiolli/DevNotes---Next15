@@ -5,6 +5,7 @@ import Button from "@/shared/components/Buttons/Button";
 import { NotepadText } from "lucide-react";
 import { Heart } from "lucide-react";
 import Tooltip from "@/shared/components/Tooltip";
+import Link from "next/link";
 
 function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
     const [isOpen, setIsOpen] = useState(true);
@@ -14,10 +15,10 @@ function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
     <li key={note.id} className="flex flex-col justify-center items-center">
         <article
             aria-labelledby={note.title} 
-            className="flex flex-col min-h-48 flex-1 p-6 gap-y-4 border-2 rounded-2xl shadow-md shadow-zinc-400"
+            className="flex flex-col min-h-48 flex-1 p-1 gap-y-4 border-2 rounded-2xl shadow-md shadow-zinc-400"
             >
             
-            <div className="flex items-center gap-x-2">
+            <div className="bg-slate-100 p-3 py-4 flex items-center gap-x-3">
                 <NotepadText size={30} aria-hidden="true" className="text-violet-400"/>
                 <h2 
                     className="font-semibold text-xl text-black"
@@ -45,12 +46,12 @@ function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
                 </Tooltip>
             </div>
             <p 
-                className={isOpen? 'text-md text-zinc-400' : 'hidden'}
+                className={isOpen? 'text-md text-zinc-400 p-4' : 'hidden'}
                 id={`note-content-${note.id}`}
                 >
                     {note.content}
             </p>
-            <div>
+            <div className="flex justify-end p-4">
                 <Button 
                     variant="ghost"
                     size="sm" 
@@ -61,12 +62,12 @@ function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
                     Hide the content
                 </Button>
             </div>
-            <div className="flex gap-x-3">
-                <Button 
-                    
-                >
-                    Edit note
-                </Button>
+            <div className="flex justify-end p-4">
+                <Link href={`/notes/${note.id}/edit`}>
+                    <Button variant="default">
+                        Edit note
+                    </Button>
+                </Link>
             </div>
         </article>
     </li>

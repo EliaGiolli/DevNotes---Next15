@@ -1,6 +1,6 @@
 "use client";
 
-import { toggleFavoriteAction } from "@/core/actions/toggleFavoriteAction";
+import { toggleFavoriteAction } from "@/features/notes/actions/toggleFavoriteAction";
 
 export async function toggleFavorite(
   noteId: number,

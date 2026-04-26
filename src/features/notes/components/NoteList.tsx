@@ -5,7 +5,7 @@ import NoteItem from "./NoteItem";
 import Button from "@/shared/components/Buttons/Button";
 import { Note } from "@/shared/types/notes";
 import { notes } from "@/core/data/notes";
-import { toggleFavorite } from "@/shared/helpers/togglerHelperFunctions";
+import { toggleFavorite } from "@/features/notes/helpers/togglerHelperFunctions";
 import Link from "next/link";
 
 function NoteList() {

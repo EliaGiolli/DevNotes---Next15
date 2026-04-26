@@ -1,5 +1,5 @@
 import { useFormState } from "react-dom";
-import { updateNoteAction } from "@/core/actions/note";
+import { updateNoteAction } from "@/features/notes/actions/note";
 import SubmitButton from "@/shared/components/Buttons/SubmitButton";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
