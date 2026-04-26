@@ -4,6 +4,7 @@ import { NoteItemProps } from "@/shared/types/notes";
 import Button from "@/shared/components/Buttons/Button";
 import { NotepadText } from "lucide-react";
 import { Heart } from "lucide-react";
+import Tooltip from "@/shared/components/Tooltip";
 
 function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
     const [isOpen, setIsOpen] = useState(true);
@@ -24,7 +25,24 @@ function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
                     >
                         {note.title}
                 </h2>
-                <Heart className={note.isFavourite ? 'text-violet-700' : 'text-slate-500'} size={30}/>
+                <Tooltip 
+                    text={
+                        note.isFavourite
+                        ? "Remove from favorites"
+                        : "Add to favorites"
+                    }
+                >
+                    <Heart
+                        onClick={() => toggleFavorite(note.id)} 
+                        className={
+                            note.isFavourite 
+                                ? 'text-violet-700' 
+                                : 'text-slate-500'
+                            } 
+                        size={30}
+                        aria-pressed={note.isFavourite}
+                        />
+                </Tooltip>
             </div>
             <p 
                 className={isOpen? 'text-md text-zinc-400' : 'hidden'}
@@ -32,24 +50,22 @@ function NoteItem({note, search, filter, toggleFavorite}:NoteItemProps) {
                 >
                     {note.content}
             </p>
-            <div className="flex gap-x-3">
+            <div>
                 <Button 
-                    variant="outline"
-                    onClick={() => toggleFavorite(note.id)}
-                    aria-pressed={note.isFavourite}
-                >
-                    {note.isFavourite 
-                        ? 'remove from favorites'
-                        : 'add to favorites'
-                    }
-                </Button>
-
-                <Button 
+                    variant="ghost"
+                    size="sm" 
                     onClick={toggle}
                     aria-expanded={isOpen}
                     aria-controls={`note-content-${note.id}`}
-                >
+                    >
                     Hide the content
+                </Button>
+            </div>
+            <div className="flex gap-x-3">
+                <Button 
+                    
+                >
+                    Edit note
                 </Button>
             </div>
         </article>
