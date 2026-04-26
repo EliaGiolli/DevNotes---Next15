@@ -1,4 +1,4 @@
-import { Note } from "@/types/notes";
+import { Note } from "@/shared/types/notes";
 
 export const notes: Note[] = [
     {

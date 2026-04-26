@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
-import { NoteItemProps } from "@/types/notes";
-import Button from "../Buttons/Button";
+import { NoteItemProps } from "@/shared/types/notes";
+import Button from "@/shared/components/Buttons/Button";
 import { NotepadText } from "lucide-react";
 import { Heart } from "lucide-react";
 
